@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveland - Kehangatan Budaya & Keindahan Wisata Lokal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cream': {
+                            50: '#FAF8F5',
+                            100: '#F4EFE6',
+                            200: '#E8DFCC',
+                        },
+                        'sogan': {
+                            50: '#F3EDE2',
+                            100: '#E2D1B9',
+                            500: '#8C6239', // Warna aksen utama batik klasik
+                            600: '#734D29',
+                            700: '#5C3A1A',
+                            900: '#3D2510', // Teks utama
+                        }
+                    },
+                    fontFamily {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background-color: #FAF8F5; /* Cream background */
+            color: #3D2510; /* Cokelat Sogan utama */
+        }
+        /* Custom scrollbar matching the theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8C6239;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #734D29;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-cream-50/90 backdrop-blur-md border-b border-sogan-100 transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo Brand -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="flex items-center space-x-2">
+                        <span class="text-2xl font-serif font-bold tracking-wider text-sogan-700">
+                            Traveland<span class="text-sogan-500">.</span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sogan-900 hover:text-sogan-500 font-medium transition duration-150 ease-in-out">Home</a>
+                    <a href="#destinasi" class="text-sogan-900 hover:text-sogan-500 font-medium transition duration-150 ease-in-out">Destinasi</a>
+                    <a href="#kuliner" class="text-sogan-900 hover:text-sogan-500 font-medium transition duration-150 ease-in-out">Kuliner</a>
+                    <a href="#belanja" class="text-sogan-900 hover:text-sogan-500 font-medium transition duration-150 ease-in-out">Belanja</a>
+                </nav>
+
+                <!-- CTA Button Desktop -->
+                <div class="hidden md:flex items-center">
+                    <a href="#destinasi" class="inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-semibold rounded-full text-cream-50 bg-sogan-700 hover:bg-sogan-600 transition duration-150 ease-in-out shadow-sm">
+                        Mulai Eksplorasi
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button type="button" id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-sogan-700 hover:text-sogan-900 hover:bg-cream-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sogan-500" aria-expanded="false">
+                        <span class="sr-only">Buka menu utama</span>
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon-bars"></i>
+                        <i class="fa-solid fa-xmark text-xl hidden" id="menu-icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div class="hidden md:hidden bg-cream-50 border-b border-sogan-100" id="mobile-menu-dropdown">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-sogan-900 hover:bg-cream-100 hover:text-sogan-700">Home</a>
+                <a href="#destinasi" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-sogan-900 hover:bg-cream-100 hover:text-sogan-700">Destinasi</a>
+                <a href="#kuliner" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-sogan-900 hover:bg-cream-100 hover:text-sogan-700">Kuliner</a>
+                <a href="#belanja" class="mobile-nav-link block px-3 py-2.5 rounded-md text-base font-medium text-sogan-900 hover:bg-cream-100 hover:text-sogan-700">Belanja</a>
+            </div>
+            <div class="pt-4 pb-4 border-t border-sogan-100 px-5">
+                <a href="#destinasi" class="mobile-nav-link flex w-full items-center justify-center px-4 py-3 border border-transparent text-base font-semibold rounded-full text-cream-50 bg-sogan-700 hover:bg-sogan-600 transition">
+                    Mulai Eksplorasi
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SLIDER SECTION (HERO BANNER) -->
+    <section id="home" class="relative h-screen min-h-[600px] w-full overflow-hidden pt-20">
+        <!-- Slides Wrapper -->
+        <div class="absolute inset-0 w-full h-full">
+            <!-- Slide 1 -->
+            <div class="hero-slide absolute inset-0 w-full h-full opacity-100 transition-opacity duration-1000 ease-in-out z-10">
+                <div class="absolute inset-0 bg-black/40 z-20"></div>
+                <img src="https://images.unsplash.com/photo-1566838321801-44755106e25d?auto=format&fit=crop&q=80&w=2000" alt="Gunung Bromo Sunrise" class="w-full h-full object-cover">
+            </div>
+            <!-- Slide 2 -->
+            <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out z-0">
+                <div class="absolute inset-0 bg-black/45 z-20"></div>
+                <img src="https://images.unsplash.com/photo-1552733560-a2928543f550?auto=format&fit=crop&q=80&w=2000" alt="Raja Ampat Keindahan Laut" class="w-full h-full object-cover">
+            </div>
+            <!-- Slide 3 -->
+            <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out z-0">
+                <div class="absolute inset-0 bg-black/40 z-20"></div>
+                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=2000" alt="Candi Borobudur" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <!-- Hero Content (Fixed over the slider) -->
+        <div class="relative z-30 flex flex-col items-center justify-center h-full text-center px-4 sm:px-6 lg:px-8">
+            <span class="text-sogan-100 font-semibold tracking-wider text-sm md:text-base uppercase bg-sogan-900/40 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 border border-sogan-100/20">
+                Selamat Datang di Traveland
+            </span>
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-cream-50 leading-tight max-w-4xl">
+                Temukan Kehangatan Tradisi di Setiap Sudut
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-cream-100/90 max-w-2xl font-light">
+                Kurasi istimewa destinasi wisata alam, kelezatan kuliner otentik, dan kerajinan lokal terbaik nusantara.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                <a href="#destinasi" class="px-8 py-3.5 bg-sogan-500 hover:bg-sogan-600 text-cream-50 font-semibold rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center">
+                    Jelajahi Destinasi
+                </a>
+                <a href="#kuliner" class="px-8 py-3.5 bg-cream-50/10 hover:bg-cream-50/20 text-cream-50 font-semibold rounded-full border border-cream-50/30 backdrop-blur-sm transition text-center">
+                    Cicipi Kuliner
+                </a>
+            </div>
+        </div>
+
+        <!-- Slider Dots Indicator -->
+        <div class="absolute bottom-8 left-0 right-0 z-35 flex justify-center space-x-3">
+            <button class="slider-dot w-3.5 h-3.5 rounded-full bg-cream-50/90 transition-all duration-300" onclick="setCurrentSlide(0)" aria-label="Slide 1"></button>
+            <button class="slider-dot w-3 h-3 rounded-full bg-cream-50/40 hover:bg-cream-50/70 transition-all duration-300" onclick="setCurrentSlide(1)" aria-label="Slide 2"></button>
+            <button class="slider-dot w-3 h-3 rounded-full bg-cream-50/40 hover:bg-cream-50/70 transition-all duration-300" onclick="setCurrentSlide(2)" aria-label="Slide 3"></button>
+        </div>
+    </section>
+
+    <!-- REKOMENDASI TEMPAT SECTION (3 Columns Grid) -->
+    <section id="destinasi" class="py-24 bg-cream-50 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header Section -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sogan-500 font-bold uppercase tracking-wider text-sm">Rekomendasi Istimewa</h2>
+                <h3 class="text-3xl sm:text-4xl font-serif font-bold text-sogan-900 mt-2">Destinasi Budaya & Alam Unggulan</h3>
+                <div class="w-16 h-1 bg-sogan-500 mx-auto mt-4 rounded"></div>
+                <p class="text-sogan-700 mt-4 text-base sm:text-lg">
+                    Sajian pilihan tempat terindah yang menawarkan keindahan alam berpadu harmonis dengan warisan adat istiadat setempat yang masih terjaga lestari.
+                </p>
+            </div>
+
+            <!-- Grid 3 Kolom -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+                <!-- Kolom 1 -->
+                <div class="group bg-cream-100 rounded-3xl overflow-hidden border border-sogan-100 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1599395568800-47b6a4a27429?auto=format&fit=crop&q=80&w=800" alt="Keindahan Gunung Bromo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-95">
+                        <span class="absolute top-4 left-4 bg-sogan-700 text-cream-50 text-xs uppercase font-semibold px-3 py-1.5 rounded-full tracking-wider">
+                            Wisata Alam
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-1 text-sogan-500 mb-2">
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <span class="text-sogan-700 text-xs font-semibold ml-2">5.0 (2.4k ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-serif font-bold text-sogan-900 group-hover:text-sogan-500 transition-colors">Kemegahan Borobudur</h4>
+                        <p class="text-sogan-700 text-sm mt-3 leading-relaxed">
+                            Candi Buddha terbesar di dunia, menawarkan keindahan arsitektur relief batu kuno yang eksotis di tengah pelukan kabut pagi hari yang magis.
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-sogan-200/50 flex justify-between items-center">
+                            <span class="text-xs text-sogan-500 font-medium"><i class="fa-solid fa-location-dot mr-1"></i> Magelang, Jawa Tengah</span>
+                            <a href="#footer" class="text-sogan-700 hover:text-sogan-500 font-semibold text-xs inline-flex items-center space-x-1">
+                                <span>Lihat Peta</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2 -->
+                <div class="group bg-cream-100 rounded-3xl overflow-hidden border border-sogan-100 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596752044943-424a1b02b55f?auto=format&fit=crop&q=80&w=800" alt="Labuan Bajo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-95">
+                        <span class="absolute top-4 left-4 bg-sogan-700 text-cream-50 text-xs uppercase font-semibold px-3 py-1.5 rounded-full tracking-wider">
+                            Pesona Laut
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-1 text-sogan-500 mb-2">
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star-half-stroke text-sm"></i>
+                            <span class="text-sogan-700 text-xs font-semibold ml-2">4.8 (1.9k ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-serif font-bold text-sogan-900 group-hover:text-sogan-500 transition-colors">Teras Sering Ubud</h4>
+                        <p class="text-sogan-700 text-sm mt-3 leading-relaxed">
+                            Nikmati ketenangan sejati di tengah persawahan hijau berundak tradisional Bali yang asri, menyatu indah bersama kearifan sistem irigasi Subak.
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-sogan-200/50 flex justify-between items-center">
+                            <span class="text-xs text-sogan-500 font-medium"><i class="fa-solid fa-location-dot mr-1"></i> Ubud, Gianyar, Bali</span>
+                            <a href="#footer" class="text-sogan-700 hover:text-sogan-500 font-semibold text-xs inline-flex items-center space-x-1">
+                                <span>Lihat Peta</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 3 -->
+                <div class="group bg-cream-100 rounded-3xl overflow-hidden border border-sogan-100 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1537953773315-2213cd2709cc?auto=format&fit=crop&q=80&w=800" alt="Teras Sawah Tegalalang" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-95">
+                        <span class="absolute top-4 left-4 bg-sogan-700 text-cream-50 text-xs uppercase font-semibold px-3 py-1.5 rounded-full tracking-wider">
+                            Budaya Hijau
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-1 text-sogan-500 mb-2">
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <span class="text-sogan-700 text-xs font-semibold ml-2">4.9 (1.5k ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-serif font-bold text-sogan-900 group-hover:text-sogan-500 transition-colors">Desa Adat Penglipuran</h4>
+                        <p class="text-sogan-700 text-sm mt-3 leading-relaxed">
+                            Merasakan langsung keramahan lokal di salah satu desa terbersih di dunia, dengan penataan tata ruang tradisional Bali yang sangat lestari.
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-sogan-200/50 flex justify-between items-center">
+                            <span class="text-xs text-sogan-500 font-medium"><i class="fa-solid fa-location-dot mr-1"></i> Bangli, Bali</span>
+                            <a href="#footer" class="text-sogan-700 hover:text-sogan-500 font-semibold text-xs inline-flex items-center space-x-1">
+                                <span>Lihat Peta</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERI & INFORMASI SAMPING (Asymmetrical Layout) -->
+    <section class="py-24 bg-cream-100 border-t border-b border-sogan-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- BARIS 1: KULINER (Scroll anchor: #kuliner) -->
+            <div id="kuliner" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 scroll-mt-24">
+                <!-- Kolom Kiri: Foto Pendukung Suasana Wisata (Desktop: 7 col) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-8 overflow-hidden rounded-3xl h-80 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" alt="Suasana pegunungan hijau danau batur kintamani" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                        </div>
+                        <div class="col-span-4 overflow-hidden rounded-3xl h-80 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1562914319-6bc43c24df8d?auto=format&fit=crop&q=80&w=500" alt="Estetika rumah adat kayu nusantara jawa joglo" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Kuliner Daerah (Desktop: 5 col) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-cream-50 p-8 sm:p-10 rounded-3xl border border-sogan-100 shadow-md">
+                        <span class="text-sogan-500 text-sm font-semibold uppercase tracking-wider block mb-2"><i class="fa-solid fa-utensils mr-2"></i>Cita Rasa Otentik</span>
+                        <h3 class="text-3xl font-serif font-bold text-sogan-900 mb-4">Kenikmatan Kuliner Tradisional</h3>
+                        <p class="text-sogan-700 text-sm sm:text-base leading-relaxed mb-6">
+                            Setiap daerah menyimpan kelezatan khas yang kaya akan rempah warisan leluhur. Dari kehangatan kuah soto berempah, legitnya bumbu sate madura, hingga kelezatan gudeg yang dimasak perlahan di belanga tanah liat.
+                        </p>
+                        <!-- Visual Highlight Makanan Tradisional -->
+                        <div class="relative overflow-hidden rounded-2xl h-48 mb-6 shadow-sm border border-sogan-100">
+                            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&q=80&w=800" alt="Makanan sate bumbu rempah nusantara" class="w-full h-full object-cover hover:scale-105 transition duration-500" loading="lazy">
+                            <div class="absolute bottom-3 left-3 bg-sogan-900/80 backdrop-blur-sm text-cream-50 px-3 py-1 rounded-lg text-xs font-semibold">
+                                Sate Bumbu Rempah Nusantara
+                            </div>
+                        </div>
+                        <a href="#footer" class="inline-flex items-center text-sogan-500 hover:text-sogan-700 font-semibold text-sm group">
+                            Cari Kuliner Terdekat <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARIS 2: BELANJA & AJAKAN (Scroll anchor: #belanja) -->
+            <div id="belanja" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center scroll-mt-24">
+                <!-- Kolom Kiri: Teks Deskripsi (Desktop: 5 col) -->
+                <div class="lg:col-span-5 order-2 lg:order-1 space-y-6">
+                    <div class="bg-cream-50 p-8 sm:p-10 rounded-3xl border border-sogan-100 shadow-md">
+                        <span class="text-sogan-500 text-sm font-semibold uppercase tracking-wider block mb-2"><i class="fa-solid fa-bag-shopping mr-2"></i>Kerajinan Tangan</span>
+                        <h3 class="text-3xl font-serif font-bold text-sogan-900 mb-4">Cinderamata Berjiwa Tradisi</h3>
+                        <p class="text-sogan-700 text-sm sm:text-base leading-relaxed mb-6">
+                            Dukung dan bawa pulang karya terbaik para maestro lokal. Sentuhan tangan terampil yang menghasilkan mahakarya berupa batik tulis sogan, tenun ikat yang anggun, hingga ukiran kayu bercita rasa seni tinggi yang kaya akan filosofi kehidupan.
+                        </p>
+                        <blockquote class="border-l-4 border-sogan-500 pl-4 py-1 mb-6 text-sogan-700 italic text-sm">
+                            "Membeli produk lokal bukan sekadar transaksi, melainkan upaya merawat asa dan warisan budaya yang tak lekang oleh waktu."
+                        </blockquote>
+                        <a href="#destinasi" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-sogan-700 hover:bg-sogan-600 text-cream-50 font-semibold rounded-full transition shadow-md">
+                            Mulai Berbelanja Lokal
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Foto Bebas / Belanja & Interaksi Lokal (Desktop: 7 col) -->
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                    <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-4 overflow-hidden rounded-3xl h-80 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=500" alt="Pasar seni tradisional belanja cenderamata" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                        </div>
+                        <div class="col-span-8 overflow-hidden rounded-3xl h-80 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&fit=crop&q=80&w=800" alt="Produk lokal kerajinan tas bambu rotan anyaman" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION (Maps & Copyright) -->
+    <footer id="footer" class="bg-sogan-900 text-cream-50 pt-16 pb-8 border-t-2 border-sogan-700 relative overflow-hidden">
+        <!-- Batik Decorative Overlay Accent (Optional Visual Touch) -->
+        <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sogan-500 via-sogan-100 to-sogan-500"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+                
+                <!-- Kolom Kiri: Branding & Sosial Media -->
+                <div class="lg:col-span-4 space-y-6">
+                    <a href="#home" class="inline-block">
+                        <span class="text-3xl font-serif font-bold tracking-wider text-sogan-100">
+                            Traveland<span class="text-sogan-500">.</span>
+                        </span>
+                    </a>
+                    <p class="text-sogan-100/80 text-sm leading-relaxed">
+                        Platform digital yang didedikasikan untuk melestarikan dan memperkenalkan kekayaan wisata budaya, pesona alam, kelezatan kuliner, dan kerajinan lokal daerah demi kemajuan pariwisata nusantara.
+                    </p>
+                    <!-- Tautan Sosial Media -->
+                    <div class="flex space-x-4 pt-2">
+                        <a href="#" class="w-10 h-10 rounded-full bg-sogan-800 hover:bg-sogan-500 flex items-center justify-center text-cream-100 hover:text-cream-50 transition duration-150" aria-label="Facebook Traveland">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-sogan-800 hover:bg-sogan-500 flex items-center justify-center text-cream-100 hover:text-cream-50 transition duration-150" aria-label="Instagram Traveland">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-sogan-800 hover:bg-sogan-500 flex items-center justify-center text-cream-100 hover:text-cream-50 transition duration-150" aria-label="Twitter Traveland">
+                            <i class="fa-brands fa-x-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-sogan-800 hover:bg-sogan-500 flex items-center justify-center text-cream-100 hover:text-cream-50 transition duration-150" aria-label="YouTube Traveland">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom Tengah: Tautan Cepat Navigasi -->
+                <div class="lg:col-span-3 space-y-6 lg:pl-8">
+                    <h4 class="text-lg font-serif font-bold text-sogan-100 tracking-wider">Eksplorasi</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li>
+                            <a href="#home" class="text-sogan-100/70 hover:text-cream-50 transition flex items-center">
+                                <i class="fa-solid fa-chevron-right text-[10px] mr-2 text-sogan-500"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#destinasi" class="text-sogan-100/70 hover:text-cream-50 transition flex items-center">
+                                <i class="fa-solid fa-chevron-right text-[10px] mr-2 text-sogan-500"></i> Destinasi Wisata
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kuliner" class="text-sogan-100/70 hover:text-cream-50 transition flex items-center">
+                                <i class="fa-solid fa-chevron-right text-[10px] mr-2 text-sogan-500"></i> Kuliner Tradisional
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#belanja" class="text-sogan-100/70 hover:text-cream-50 transition flex items-center">
+                                <i class="fa-solid fa-chevron-right text-[10px] mr-2 text-sogan-500"></i> Kerajinan & Belanja
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Kolom Kanan: Google Maps Embed (Lazy Loaded & Responsive) -->
+                <div class="lg:col-span-5 space-y-4">
+                    <h4 class="text-lg font-serif font-bold text-sogan-100 tracking-wider">Peta Lokasi Utama</h4>
+                    <div class="w-full h-56 rounded-2xl overflow-hidden border border-sogan-700 shadow-inner relative bg-sogan-800">
+                        <!-- Embedded Google Map targeting Yogyakarta as a core cultural city example -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126561.42845667623!2d110.3189578!3d-7.7955798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5787bd57b3d3%3A0x91b29a2816912fb1!2sYogyakarta%2C%20Kota%20Yogyakarta%2C%20Daerah%20Istimewa%20Yogyakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                            class="absolute inset-0 w-full h-full border-0" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Peta Interaktif Yogyakarta Traveland">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Informasi Hak Cipta (Copyright) -->
+            <div class="pt-8 mt-8 border-t border-sogan-800 text-center text-xs sm:text-sm text-sogan-100/60 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Traveland. Hak Cipta Dilindungi Kelompok Kita.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-cream-50 transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-cream-50 transition">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT CODE -->
+    <script>
+        // --- 1. FIXED & TRANSPARENT HEADER ON SCROLL ---
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'bg-cream-50', 'py-1');
+                header.classList.remove('bg-cream-50/90', 'py-0');
+            } else {
+                header.classList.remove('shadow-lg', 'py-1');
+                header.classList.add('bg-cream-50/90');
+            }
+        });
+
+        // --- 2. RESPONSIVE MOBILE MENU ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuDropdown = document.getElementById('mobile-menu-dropdown');
+        const menuIconBars = document.getElementById('menu-icon-bars');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            
+            mobileMenuDropdown.classList.toggle('hidden');
+            menuIconBars.classList.toggle('hidden');
+            menuIconClose.classList.toggle('hidden');
+        });
+
+        // Close mobile menu dropdown when clicking any link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuDropdown.classList.add('hidden');
+                menuIconBars.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // --- 3. AUTO-PLAY & INTERACTIVE SLIDER (HERO BANNER) ---
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function showSlide(index) {
+            // Remove active classes
+            slides.forEach((slide) => {
+                slide.classList.remove('opacity-100', 'z-10');
+                slide.classList.add('opacity-0', 'z-0');
+            });
+            dots.forEach((dot) => {
+                dot.classList.remove('bg-cream-50/90', 'w-3.5', 'h-3.5');
+                dot.classList.add('bg-cream-50/40', 'w-3', 'h-3');
+            });
+
+            // Set active slide and dot
+            slides[index].classList.remove('opacity-0', 'z-0');
+            slides[index].classList.add('opacity-100', 'z-10');
+            
+            dots[index].classList.remove('bg-cream-50/40', 'w-3', 'h-3');
+            dots[index].classList.add('bg-cream-50/90', 'w-3.5', 'h-3.5');
+            
+            currentSlideIndex = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+
+        function setCurrentSlide(index) {
+            showSlide(index);
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000); // 5 Detik per transisi slide
+        }
+
+        // Initialize Slider
+        showSlide(currentSlideIndex);
+        resetInterval();
+
+        // Pause slideshow on hover
+        const heroSection = document.getElementById('home');
+        heroSection.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        heroSection.addEventListener('mouseleave', resetInterval);
+
+        // --- 4. SMOOTH SCROLL OFFSET FOR STICKY HEADER ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
